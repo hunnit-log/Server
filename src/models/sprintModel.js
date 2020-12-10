@@ -6,25 +6,25 @@ const SprintSchema = new mongoose.Schema({
     ref: 'user',
   },
   startTime: { // 스프린트 시작 날짜
-    type: Date,
+    type: String,
     required: true,
   },
   endTime: {
-    type: Date,
+    type: String,
+    required: true, // sequelize : AllowNull
+  },
+  nextReviewTime: {
+    type: String,
     required: true, // sequelize : AllowNull
   },
   question: { // 질문들
     type: [String],
   },
-  isNotice: { // 알람 여부
-    type: Boolean,
-    default: false,
-  },
   progress: { // 현재 진행 중인 스프린트인지
     type: Boolean,
     default: true,
   },
-  percentAverage: { // 평균 달성률
+  totalPercentage: { // 평균 달성률
     type: Number,
     required: true,
     default: 0,
@@ -34,11 +34,11 @@ const SprintSchema = new mongoose.Schema({
     required: true,
   },
   goal: [{
-    name: { // 목표 이름
+    title: { // 목표 이름
       type: String,
       required: true
     },
-    percent: { // 목표 달성률
+    percentage: { // 목표 달성률
       type: Number,
       required: true,
       default: 0,
@@ -48,11 +48,11 @@ const SprintSchema = new mongoose.Schema({
     },
   }],
   review: [{
-    date: {
-      type: Date,
+    reviewTime: {
+      type: String,
       required: true,
     },
-    percent: {
+    averageAchievement: {
       type: Number,
       required: true
     },
